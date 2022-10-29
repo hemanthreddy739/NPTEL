@@ -1,0 +1,857 @@
+ --> on an avg any two people in the world in social networking are separated by 6 hops.
+--> digital marketing is also a part of social networking 
+	ex:- to make u r new startup brand popular collect some pivotal people in SN i.e the influencer 
+	or the people with huge following and thus spreading ur brand by their reviews.
+
+
+-->dots = nodes .
+   edges = links.
+
+--> connected ness is key term.
+
+--. in a social network --> the disconnected ness is impropable i.e the disconnected ness propability 
+	is neglisable.
+
+--> ipython --> interactive python.
+
+--> dictionaries are faster since they are stored as hash tables in memory
+	d = {}
+	d.has_key('he')  --> returns true if the key is present else false if it is not present in the dictionary.
+
+
+==> in general maths the no.of edges an vertex contain in a graph is known as its 'degree'
+
+--> in connected graph we can reach any destination node from starting node through a series of
+	edges called path.
+--> in complete graph there is a direct edge between any starting and destination edge.
+--> all complete graphs are connected graphs but reverse is not all ways true.
+
+
+=================== networkx ==========
+import networkx as nx
+
+G= nx.Graph()   --> it is an undirected graph
+G = nx.DiGraph()   --> it is directed graph.
+G.add_node(1)
+G.add_node(2)
+G.nodes()   --> return list of nodes
+G.add_edge(1,2)
+G.edges()   --> return list of edges
+G.order()  	--> return length or number of nodes
+G.size()	--> returns the number of edges.
+
+---> for complete graph:-
+========================== 
+		g = nx.complete_graph(n)
+
+		--> number of nodes = n
+		--> number of edges = (n-1)(n)/2
+		--> to check a graph is connected or not 
+		nx.is_connected(g)
+
+--> to check the existing of the path b/w any 2 cities/nodes.
+	nx.has_path(g, c1, c2)
+
+
+
+*** total possible friendships graph among the group of 50 nodes(people) == 2^50c2
+
+
+PROPERTIES:-
+=====================
+==> RANKING OF NODES IN A NETWORK
+==> SEARCHING IN A NETWORK   ---> log(n) steps takes to search for a node in a given network of 'n' nodes.
+		--> small world phenomena
+==> LINK  PREDICTION
+
+==> THE CONTAGIONS
+
+==> IMPORTANCE OF ACQUAINTANCES
+		--> strength of weak ties
+
+
+*** MARKETING ON SOCIAL NETWORKS ****
+
+
+
+
+================>WEEK-2:-
+ 
+	HADLING REAL-WORLD NETWORK DATASETS :-
+	=======================================
+
+intro to datasets:-
+===================
+
+	some history story word :-
+			zachary karate club (friend ship/social network) :- 34 nodes, 78 edges
+
+ --> degree of a node in a network is know as => the no of edges that 'particular node' had in that network.
+
+--> joke :- on the basis of network theory , we can able to move synonamusly from
+	 love to hate ,friend to enemy.
+
+
+
+FORMATS OF DATASETS:-
+=======================
+
+examples of network datasets :-
+friendship network,road network --> undirected 
+email, citation ,                --> directed
+
+--> collaboration/ co - authorization network
+
+FORMATS:-
+=========
+	-> CSV:-  labeling is difficult here
+		with an .txt,.csv
+		adjacency list(adjlist)  --> soucenode,(.....)source node's adjacent nodes
+		edgelist                --> contains source,destination, weight  ==> all should be numeric		
+
+	->gml :- graphic modelling language
+	->pajek net:- uses .net,.paj extension
+	->graphml:- structure is a bit difficult but adding attributes is very easy/flexible.
+
+	->gexf :- graph exchange xml format
+		created by 'gephi' it's an open source s/w which is used for visualising and
+		analysing social networks.
+
+
+** most of the real world networks exibit 'power law degree distribution'(which means
+	very few nodes have high degree and lot of nodes have low degree)
+
+** plt.loglog()  --> it takes log of x,log y 
+			   if network is in complete powerlaw distribution then loglog plot 
+			   is straight line.
+
+# based on the density of the graph it can be determined that it is a sparse/dense graph.
+
+
+
+*** if n nodes are there then total no.of edges possible = nc2
+
+
+
+density(G) = no.of.edges_it_has/total_possible_edges.
+
+
+==> simple graph --> d(G) = 0 -1
+    empty 		--> d(G) = 0
+    complete 	--> d(G) = 1
+    multi-graph   --> d(G) > 1
+
+
+==> nx.density(G)    --> it gives the density of the graph
+
+
+
+*** Clustering Coefficient of a node =Number of edges present among neighbours of the node/Total number of edges possible among the neighbours	
+		
+		nx.clustering(G)
+		nx.average_clustering(G)
+--> more the clustering co-efficient the more tight /close the network.
+
+
+*** diameter :-    
+================
+The maximum length between any two nodes in a graph is known as the Diameter.
+--> nx.diameter(G)
+
+
+==> Gephi :-
+=============
+--> it is an network visualization tool that is based on java language.
+
+--> u can manually move the nodes in the geffi
+
+
+
+**** EMERGENCE OF CONNECTEDNESS:-
+====================================
+
+--> in real world senario a graph is almost always connected.
+
+
+
+*** (1+1/n)^n  = e
+*** (1-1/n)^n  = 1/e
+
+
+
+*** given a graph with 'n' nodes then on putting order('nlogn') edges then the graph most likely connected.
+
+
+****  G.add_nodes_from(iterable)   --> add nodes to the graph from the iterable.
+
+
+
+
+*****
+
+Probability of node V not including after nlog(n) edges = (1/n)^2
+
+****
+
+The structure of a GML file is -  starts with an graph key word.
+
+
+
+STRENGTH OF WEAK TIES:-
+=========================
+
+--> granovetter conducted an survey and find out that >90% of people get their jobs by their 
+	weak ties i.e not much friendship contain people 
+	{ since they are in far away place so getting the new information from them had a much probability which leads an getting a new job}
+
+** Triads, clustering coefficient and neighborhood overlap :-
+   ============================================================
+	--> the phenomena of traid --> triangle == triadic closure
+
+
+	--> the clustering-coefficient denotes the strength of my friend-ship with my neighbours.
+
+	--> neighborhood-overlap :- (a intersection b)/a union b ---> (common friends b/w a and b)/total friend of a and b
+
+--> if traidic closure doesn't exist then they may not be a good friends or week tie.
+--> weak tie make local bridge.
+
+
+** the trust b/w 2 people in friendship depends on 2 factors i.e embeddedness{ nothing but having common friends} or duration of friendship.
+** the embedded ness is all about the edge but not node.
+
+
+EMBEDDEDNESS IN FRIENDSHIP:-
+==============================
+
+--> if no.of common friends is more than the more will be the embeddedness b/w the 2 people.
+
+--> the embedded ness is related to the edge b/w the 2 nodes but not about the nodes.
+--> embeddedness doen't require in all relationship.
+
+ --> making some sort of edges in a social networks that yeilds an great out-put ==> social capital
+--> some times the social network itself is an grat capital.
+--> passive_engagement --> following the updates of the friends on the friends in the social media accounts.
+
+
+relation-ships b/w friends on face-book be like this :-
+========================================================
+--> one way communication.
+--> mutual{reciprocal} communication 
+--> maintained communication(passive communication} { simply following and linking, commenting their posts}
+
+in facebook their range will be:-
+ 	maintained > one-way > mutual
+
+
+
+--> if there is 50 nodes and the no.of partition possibe be 2^50
+
+to be a community partation --> there should be intersparcity and intra density.
+
+
+--> between ness :-        sum of all the shortest paths connecting the 2 nodes in volving the "particular-edge"/ total no.of shortest paths b/w the 2 nodes
+======================
+		--> to find the community partition in a graph , just find the b/wness and remove the high b/wness 
+		    containing edges and remove them, then u can find the community partitions.
+
+
+
+
+==>STRONG AND WEEK RELATIONSHIP COMMUNITY DETECTION USING 
+	GRIVAN NEWMAN ALGORITHM:-
+===========================================================
+
+
+nx.edge_betweenness_centrality --> return an dictonary of values , contain key as {edge} and values as its betweenness.
+
+
+nx.connected_component_subgraphs(Graph)    --> enni divisions vunnayo istunthi
+
+
+
+--> with the help of modularity section in gephi we can visualise communities in an network.
+
+--> forceatlas layout is the one in gephi which segregates and put the nodes that belong to respective communities.
+	to observe that clearly --> increse the repulsion strength to significant amount.
+
+
+*********
+Since node A and B don't form a triangle and they don't know each other's friends, the edge X is
+a weak tie.
+Since edge X is connecting two clusters, it is a bridge.
+
+
+***********
+
+The neighbourhood overlap is 0.4 (2 common friends among 5 total friends). So (I) is wrong. It
+is a strong tie because there are triads between A and B. For the same reason, it is not a local
+bridge.
+
+*******
+
+A population with only closure will support only one side. A population without closure would
+not be united in support of their favourite hero. Hence we need both brokerage and closure to
+keep things interesting.
+
+
+
+week-4:-
+============
+
+--> we are not just connected we ae permeate{ connecting through several layers}
+
+
+--> the friendships happen based on the two factors :-
+=========================================================
+1) selection :- we select people like us{minded} and make friendship with them.
+2) social influence :- after they become friends by their influence on each other they can do some gud or bad things.
+
+
+--> friends among smokers <-- selection is more
+--> lean with obscese become obscese <-- social influence is more.
+
+
+HOMOPHILIY :- teenagers tend to talk with teenagers only and middle agers tend to talk middle agers only.
+
+
+
+closures :-
+=============
+triadic :- i and x have common friend "c" so then i and x become friend.
+focus :-	i and x are part of an "yoga club" then i and x become friend.
+membership :- i an part of "yoga club" and i have a friend "x" then i make "x" to be join in the yoga club.
+
+
+
+
+==> if B and C have K common friends then the probability of that they become friends -->  1-(1-p)^K
+	and that they not become friends probability --> (1-p)^K
+		--> where , 'p' is the probability of 'b' and 'c' to become friends when they have a common friend.
+ 
+
+
+==> 'G' be a graph 
+	G.neighbours(particular_node)  --> gives the neighbours of that particular_given node.
+
+
+
+==> nx.write_gml('gml_file_name.gml')
+plt.save('file_name.jpg')
+
+nx.density(Graph)
+
+
+
+===============> WEEK - 5
+	sCHELEINGS MODEL:-
+	=============
+--> in an area where A is a kind of people and B is a kind of people , if 'A' kind of
+	people are not greater than or equal to 't' number in that area than that 'A' kind of member
+	will not able to stay happy there so he may migrate.
+	--> here 't' is called threshold limit.
+
+--> the scheleing model segregation simulation says that the more is the simalarity that
+	you expect the better is the segregation.
+
+	--> emergence of homophily
+		segregation emergence 
+	---> but the segregation doesn't occur in all the times, it is not an inevitable thing.
+
+
+***** the nodes in the internal cells(not the bondary one's) in an 'grid' have '8' neighbours.
+	boundary-ones:-
+	===============
+		case1:- conner ones --> 3 neighbours
+		case2:- except corner ones --> 5 neighbours.
+
+===> function in networkx module to get a grid :-
+================================================
+G = nx.grid_2d_graph(10,10) --> iot gives a 10 X 10 grid.
+
+
+
+=====> +VE AND -VE RELATIONSHIPS:-
+=========================================
+
+--> ina group of 3 people possible type of friendships and their stability:-
+
+case1:-
+3 of them are friends --> stable
+2 friendships and 1 hate rate --> unstable
+2 hate rate and 1 friendship --> stable
+3 hate rates --> unstable
+
+
+
+===> introducing a -ve frienship into a happy world dooesn't make the happy world completely vanished.
+
+
+==> Balance Theorm :-
+======================
+
+--> remember the war is always between 2 teams/groups.
+
+--> structurally balance :-
+	completely 1 team
+	completely 2 groups.{ frirndships with in the group is +va and across is -ve}
+
+
+--> if there are 'n' nodes in a network then there would be 'nc3' triangles in the network.
+
+
+==> making the unstable states to stable :-
+=================================================
+case 1:-
+========
+if the '+' sign count is 2
+then take any sign in the tries then make it inverted --> then the trie become stable.
+
+case2:-
+========
+if the '+' sign count is 0
+then take any sign and make it +ve then the trie become stable.
+
+
+======================>
+In a grid of n by n nodes, all nodes except the border nodes can have 8 neighbours. Thus in an
+n * n grid, (n − 2) * (n − 2) nodes can have 8 neighbours.
+
+
+
+WEEK:-6
+============
+WEB GRAPH
+
+case :-1
+=========
+--> every node is given with equal amount of gold and after each iteration the gold should 
+	distributed to neighbours and atlast after some significant_amount_of_iterations {till convergence --> no change aftr this point even further proceed for distribution}
+	--> the ranking is given to nodes based on the amount of gold the node accumulates.
+
+case2:-
+=========
+
+---> random walk and a gold coin drop at each node visted time. and after some significant 
+	amount of random walks the ranking is given to nodes based on the amount of gold the node accumulates.
+
+
+==============> it is observed that in both the cases the same node is ranked the top node.
+
+
+
+==> function in networkx to get te outlinks from the node
+
+	G.out_edges(particular_node) ---> it returns the list of outgoing edges from the given node , 
+						     and this function only for out going edges.
+
+
+# in implementation of page ranking :-
+problems:-
+	sink problem :-
+			# handling the sink cases { where the nodes only have incoming
+			    # but not out going as a result the points are accumulted a lot there }
+     
+	teleportation :- where in the random walk there is no out links to go to another node in such case from the 
+				entire graph we choose an node at randomly and we resume our random walk it is called teportation.
+
+
+=====> DEGREE RANK VS PAGE RANK
+===================================
+--> indegree and page rank values are not corelated with each other
+--> it is clearly dipicted by using the citation network
+--> in which a node with high indegree but contain less page rank --> it is because those indegree giving nodes are not so important.
+--> similarly a node with less indegree but contain high page rank --> it is because those indegree giving nodes are  so important or their indegree->indegree giving nodes are may be so important.
+
+
+
+====> distribution method lo after some iterations tarvata node ranking value find out chesetappudu :-
+	simple-trick:-
+	================
+	every node ki other nodes nundi vache source ni equation laga raste chalu work done.
+
+
+
+
+
+
+
+--> any random graph doesn't reach convergence state after significant iterations, only some graphs reach,
+	so, it is not true that all graphs reach convergence state.
+
+
+
+
+WEEK :- 7
+===================
+
+--> due to pressure in the group not directly and to our sense of confirmity we are following the group.
+--> we almost follow others in every aspect of our life.
+--> human beings are intrinsically follow each other.
+
+--> spreading an information/topic/product into the network is called diffusion 
+--> the extent{ the range of diffusion depends on the kind of product }
+
+--> the payoff{ amount of interest on the work} and the number of friends on which side , these are the 
+	2 major factors that plays an crucial role in taking the decissions
+
+--> we didn't get any payoff when we not go along with each other.
+
+
+==> SOCIAL REINFORCEMENT:-
+    =======================
+	when more and more people come and tell us about some thing then we tend to believe that thing and we moved to that side 
+	this is called social reinforcement.
+	
+
+
+--> difussion of any thing in an network , faces starting problem , to overcome from the starting trouble you 
+	should increase the payoff of u r product { nothing but creating a craze to u r product}
+	2 nd method:-
+	===============
+	--> choose the key people{ celebreties} and infect them with u r idea --> this method is know as "viral marketing"
+
+DENSITY IN ACOMMUNITY = actual_edges_in_the_community/total no.of edges possible
+
+--> with the high density then the outside people can't convince them easily.
+
+--> higher the density in the community it is difficult to inject or diffuse an idea into that community.
+
+--> the trajectory of diffusing information into an network is called diffusion.
+
+--> in order for a node to agree for a decission then atleast { 'q' i.e the threshold} fraction of his friends 
+	should agree for that decission.
+
+
+--> density of cluster(d) --> look at every node in the cluster and atleast 'd' fraction of that node friends are with in that cluster.
+
+
+--> the cascade can't sweep the entire network if the cluster have the cluster_density greater_than 1-q
+
+
+
+---> in most of the corporate companies the company owners not allow much communication b/w the different department 
+	peoples working in the company because on allowing they all become united and if their occur 
+	any problem they all may revolt at once which is a huge problem for ownners.
+
+
+
+===========> COLLECTIVE ACTION:-
+======================================
+--> INTRINSIC THRESHOLD:-  the number of people including me are required to began revolt.
+--> every node in an network only know about their friends intrensic_threshold but not all others in the network.
+
+
+
+
+============> good problems:-
+=================================
+Factors which influence diffusion are -
+I. Payoff
+II. Key people
+III. Cascade formation
+
+
+======>
+Viral marketing finds key nodes which has high connectivity with the network using
+which the idea gets spread rapidly.
+
+======>
+A cascade cannot be complete in a network with threshold of adoption = q, if there
+exist a cluster with density   ---> >(1-q)
+
+	reason :-Since more friends are inside the cluster who decides not to adopt the idea, the
+		cascade cannot be completed.
+
+
+
+
+WEEK :- 8
+=============
+
+REPEATED-IMPROVEMENT :-
+-----------------------
+	--> if an 'tourist_guide' recommend good place to visit for an visitor then the visitor
+		rates the place as well as the 'guide' as the guide become more 'popular' and thus he recommends 
+		more and more good places thus the places like resorts become more popular.
+	--> this is called repeated improvement.
+
+--> in the proinciple of repeated improvement
+--> with the initial values '1' for all then after some significant amount of normalizations the 
+	normalised values are converged.
+
+
+HUBS :- wnere we get the information { like tourist_guide }
+AUTHORITIES :- Actual places
+
+--> a node can have hub score and authority score.
+
+CONVERGENCE DEFINITION :-
+===========================
+
+the proportion of points each node takes with respect to other nodes , this always remains the same.
+
+
+
+===> checking the convergence in the matrix multiplication with an matrix and an vector.
+==========================================================================================
+
+	no matter with what vector you start from when you start applying the vector on the same matrix 
+	{ and the result obtained vector is normalised and repeatedly applying on the matrix} at last the vector conveges to a constant vector.
+
+
+
+--> when 2 points let say (x1, y1) and (x2, y2) on the 2-D plane are added then the resultant 
+    point is close to the big vector.
+
+
+
+===> eigen values and eigen vector :-
+========================================
+
+Therefore, the term eigenvalue can be termed as characteristic value, characteristic root, proper values or latent roots as well. In simple words, the eigenvalue is a scalar that is used to transform the eigenvector. The basic equation is
+
+Ax = λx
+
+The number or scalar value “λ” is an eigenvalue of A.
+
+
+x is an eigenvector of A corresponding to eigenvalue, λ.
+
+====>
+Eigenvectors are linearly independent and only change their magnitude when their
+corresponding matrix is applied to them.
+
+===============>
+|A- λI| = 0 is the Eigen equation or characteristics equation, where “I” is the identity matrix. 
+		The roots of an Eigen matrix are called Eigen roots.
+
+
+===> in a matrix every column sum == 1, then it is called a marcovian matrix
+	and its highest eigen value is 1
+
+
+WEEK :- 9
+=================
+
+NORMAL DISTRBUTION :- a distribution where the values are less in the left and right and peek in the middle is called normal distribution.
+	--> the curve shape is "bell shape"
+
+--> Examples:- 
+===============
+car exhaust 
+
+
+--> The most convinving explanation for the occurence of power-law graph insted
+	bell curve is preferential attachment hypothesis.
+
+
+
+====> in a network with 'n' nodes and having edges with an 'p' probability then the peek will be 
+	observed at 'n*p'.
+
+
+=========>
+The power law states that the frequency (plotted along the y-axis) is inversely proportional to k(a) 
+where k is the values plotted along the x-axis. Here a is preferably between  ===> 2 and 3
+
+
+
+====> good problem:-
+=======================
+Since using the rich get richer phenomenon, the probability of becoming friends with
+someone is dependent upon the degree of that node, we can say that individually the
+probability of becoming friends with:
+A is 3/30
+B is 2/30
+D is 3/30
+And since we need to find the probability of becoming friends with A or B or D, the total
+probability is (3+2+3)/30= 8/30.
+
+
+===> another good problem
+=========================
+For each student to have 2 friendships, X must become friends with A & D. The probability
+of becoming friends with A is 1/16 and that of becoming friends with D is 1/16. Since both
+events need to happen simultaneously, the total probability of each student having 2 friends is
+(1/16)*(1/16)
+
+
+
+===> if u want to hack or inject any malware into an network then injecting it into an high{ degree containing node}
+	make our job easy.
+
+
+WEEK :- 10
+==================
+
+--> The rich get richer phenomena is observed in the "quora" portal
+
+--> for modelling the spreading of the disease the two most important factors are :-
+=========================================================================================
+1) pathogen
+2) network type (dense or sparse)
+
+
+--> a Disesase is said to be epedimic if it infects the bottom of the bottom most level people
+	in the branching model then the disease is said to be epidemic
+
+
+====> pk = Ro{ it is called basic reproductive number}
+if Ro < 1 ==> then the infection dies away for sure ; with an probability =1
+if Ro > 1 ==> then based on the value of Ro if the Ro is so large then it surely become 
+			an epidemic, and it persiste in the network.
+		but if in case if the links in the first level breaked then the value of Ro will be less but it > 1
+		in that case the infection is still there and it will die away with an some +ve probability, it means
+		it will not surely vanish in the network but there is a posibility.
+
+
+===> SIR MOEL :- susceptible infected recovered/removed
+
+in the infected stage --> Ti is nothing but the time for which you are going to remain infected.
+--> sir model in case of "measales".
+
+
+SIS MODEL :- incase of "common cold".
+
+
+===> end configurations in SIR model :-
+==========================================
+--> the complete network is recovered
+--> some nodes in the network are in recovered state and rest of the nodes are in susceptible state.
+
+--> SIR will definitely come to an end.
+
+-->SIS MODEL will keep running for ever.
+
+
+
+==> The old theory of basic reproductive number( which is used in branching model) doesn't work for complex netorks 
+	and SIR and SIS model.
+
+
+---> PERCOLATION MODEL:-
+==============================
+
+--> with out the notion of time and every thing is static.
+--> if there is a open pipe path from a node to victim then that victim gets infected.
+
+
+
+
+=====> good problems:-
+==========================
+In SIR model, nodes can become immune after it is infected.
+In SIS model, there can exist networks where after specific time period, no node is
+infected and so the disease cannot spread.
+
+
+
+
+
+
+WEEK :-11
+=============
+
+The world is connected.
+
+--> milgram observed that on an avg with the help of 6 hops any 2 people in the world can be connected.
+
+
+--> in 1998 watts and strogatz reconducted what the milgram did on an email network ,they observed that small world phenomena.
+	--> they said that the small world phenomena is due to the:-
+		1) homophily and weak ties
+
+
+
+--> milgrams model back ground thing are{ local method, decentralised search}
+
+
+--> the probability in putting an edge b/w 'a' in a network 'N' to a node 'p' in another network ==> probability = 1/d(a, p)^k
+
+
+
+
+====> good problem:-
+=======================
+The friendship graph is connected with the average length between any two nodes being 6
+
+
+WEEK :-12
+===============
+
+--> rewiring or adding some extra edges will decrease the diameter of the graph.
+
+--> in a decentalised search myopic search is happen.
+
+--> to perform myopic search local knowledge is required
+--> to perform the optimal search along with local knowledge{ i.e the distance from the neighbour to target}
+	 the global knowledge{ i.e about the weak ties of the neighbours}
+
+--> the time it takes in myopic search increases "logarithamiocally" when increase in the number of nodes.
+
+--> to become a pic more popular:-
+=====================================
+--> novality of meme
+--> structur of network
+--> key nodes.
+
+KEY NODE:-
+============
+--> the one with high degree
+--> the one which is closer to all the nodes
+--> the one which has more b/wness
+
+
+--> in the core periperal structure --> just go and hit the core node with u r idea then automatically u r idea will reach to all
+
+
+--> k- core is nothing but in a Graph 'G' there is a sub graph 'g' in which every node has a degree >='k' 
+	then that sub-graph 'g' is know as k-core.
+
+
+	--> the algorith used to find the k-core --> k-shell decomposition.
+
+
+
+==> good problems:-
+======================
+search on a small world networks is known as --> decentralised search
+
+
+
+==> independent cascade model --> influential power.
+
+The influential power of a set of nodes X is the number of nodes that get
+infected with the disease if the disease starts with X
+
+
+-->To obtain the maximum influential power, one should look for the node with the highest
+coreness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
